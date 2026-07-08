@@ -2,64 +2,387 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextern AI - Live Test</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RootTrace AI</title>
 
-    <!-- Bootstrap CSS for a clean, responsive layout -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- n8n Chat Widget CSS -->
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #050720;
+            color: white;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 85% 20%, rgba(0, 255, 200, 0.25), transparent 25%),
+                radial-gradient(circle at 70% 70%, rgba(255, 120, 80, 0.20), transparent 30%),
+                linear-gradient(135deg, #070729 0%, #0b102e 45%, #36474b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            right: -120px;
+            top: 40px;
+            width: 430px;
+            height: 430px;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            filter: blur(0.3px);
+            box-shadow:
+                0 0 20px #00ffe0,
+                0 0 45px #ffcc00,
+                inset 0 0 30px #ff4df0;
+            opacity: 0.75;
+        }
+
+        .navbar {
+            background: transparent;
+            padding: 28px 0;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            margin-left: 20px;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .brand-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content {
+            padding-top: 90px;
+            padding-bottom: 90px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .small-title {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .main-title span {
+            color: #4dfcff;
+        }
+
+        .subtitle {
+            font-size: 1.35rem;
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 650px;
+            margin-top: 25px;
+        }
+
+        .btn-main {
+            margin-top: 35px;
+            background: #ffe600;
+            color: #111;
+            border-radius: 999px;
+            padding: 13px 28px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .btn-main:hover {
+            background: white;
+            color: #111;
+        }
+
+        .section {
+            padding: 90px 0;
+            background: #080a24;
+        }
+
+        .section.alt {
+            background: #0e132f;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: rgba(255, 255, 255, 0.72);
+            max-width: 760px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 24px;
+            padding: 28px;
+            height: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(12px);
+        }
+
+        .map-box {
+            border-left: 4px solid #ffe600;
+            padding-left: 18px;
+            margin-bottom: 22px;
+        }
+
+        .map-box p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0;
+        }
+
+        .scenario-tag {
+            display: inline-block;
+            background: rgba(255, 230, 0, 0.14);
+            color: #ffe600;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        table {
+            color: white !important;
+        }
+
+        .table-dark-custom {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-dark-custom th {
+            color: #ffe600;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .flow {
+            color: #4dfcff;
+            font-weight: 700;
+        }
+
+        footer {
+            background: #050720;
+            color: rgba(255, 255, 255, 0.55);
+            padding: 35px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .orb {
+                width: 280px;
+                height: 280px;
+                right: -100px;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-light d-flex flex-column min-vh-100">
+<body>
 
-    <!-- Simple Navbar -->
-    <nav class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <span class="navbar-brand mb-0 h1 fw-bold">Nextern Prototype</span>
-        </div>
-    </nav>
+    <div class="hero" id="home">
+        <div class="orb"></div>
 
-    <!-- Main Content Area -->
-    <div class="container my-auto py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h2 class="fw-bold text-dark mb-4">Webhook Test Environment</h2>
-                <p class="lead text-secondary mb-4">
-                    This page is connected directly to your production webhook.
-                    Click the chat bubble in the bottom right corner to initialize the connection.
-                </p>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="RootTraceAI.png" class="logo-img" alt="RootTrace Logo">
+                </a>
 
-                <!-- Webhook Display Alert -->
-                <div class="alert alert-info border-0 shadow-sm text-break" role="alert">
-                    <strong>Connected Endpoint:</strong><br>
-                    <code>https://n8ngc.codeblazar.org/webhook/06a099aa-3f20-4d1a-b851-aa139180ce4e/chat</code>
+                <div>
+                    <a class="nav-link d-inline" href="#map">Dependency Map</a>
+                    <a class="nav-link d-inline" href="#scenarios">Scenarios</a>
+                    <a class="nav-link d-inline" href="#demo">Try AI</a>
                 </div>
             </div>
+        </nav>
+
+        <div class="container hero-content">
+            <p class="small-title">C240 AI Essentials & Innovations · Final Assessment</p>
+
+            <h1 class="main-title">
+                RootTrace <span>AI</span>
+            </h1>
+
+            <p class="subtitle">
+                An AI incident investigation assistant that helps IT students and junior developers
+                trace checkout errors back to the most likely root cause.
+            </p>
+
+            <a href="#demo" class="btn btn-main">Try RootTrace Assistant</a>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <section class="section" id="map">
+        <div class="container">
+            <h2 class="section-title">System Dependency Map</h2>
+            <p class="section-desc mb-5">
+                RootTrace AI uses a system dependency map to show how each part of the simulated
+                e-commerce checkout system is connected.
+            </p>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <div class="map-box">
+                            <h5>Frontend Checkout Page</h5>
+                            <p>Depends on Payment API. Allows users to click checkout and complete payment.</p>
+                        </div>
+
+                        <div class="map-box">
+                            <h5>Payment API</h5>
+                            <p>Depends on Database. Processes payment requests and retrieves order data.</p>
+                        </div>
+
+                        <div class="map-box">
+                            <h5>Promo Code Service</h5>
+                            <p>Depends on Database. Checks discount codes and coupon records.</p>
+                        </div>
+
+                        <div class="map-box">
+                            <h5>Database</h5>
+                            <p>Stores coupon, order, and payment information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <h4 class="fw-bold mb-4">How RootTrace Traces Back</h4>
+                        <p class="flow">
+                            Frontend Error → Payment API Error → Database / Gateway Issue → Likely Root Cause
+                        </p>
+                        <p class="text-white-50">
+                            Instead of treating every alert as a separate problem, RootTrace checks which
+                            component depends on another component and traces backwards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt" id="scenarios">
+        <div class="container">
+            <h2 class="section-title">Incident Scenarios</h2>
+            <p class="section-desc mb-5">
+                These scenarios are used to test whether RootTrace AI can explain the correct root cause
+                and causal chain.
+            </p>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+                    <div class="glass-card">
+                        <span class="scenario-tag">Scenario 1</span>
+                        <h4 class="fw-bold">Promo Code Bug</h4>
+                        <p class="text-white-50">
+                            A promo code update causes database issues, which later affects payment and checkout.
+                        </p>
+                        <p><strong>Root Cause:</strong><br>Git Commit #402 caused an issue in promo code validation
+                            logic.</p>
+                        <p class="flow">
+                            Git Commit #402 → Promo Code Service Bug → Database Issue → Payment API Timeout → Checkout
+                            Failure
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="glass-card">
+                        <span class="scenario-tag">Scenario 2</span>
+                        <h4 class="fw-bold">Payment Gateway Timeout</h4>
+                        <p class="text-white-50">
+                            The checkout page shows payment failure, but the issue starts from the external gateway.
+                        </p>
+                        <p><strong>Root Cause:</strong><br>External payment gateway latency increased.</p>
+                        <p class="flow">
+                            Gateway Issue → Payment API Timeout → Frontend Payment Failure → User Cannot Checkout
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="glass-card">
+                        <span class="scenario-tag">Scenario 3</span>
+                        <h4>Database Overload</h4>
+                        <p class="text-white-50">
+                            The checkout page freezes because the backend database is overloaded during peak traffic.
+                        </p>
+                        <p><strong>Root Cause:</strong><br>Database overload prevented proper checkout requests.</p>
+                        <p class="flow">
+                            Database Overload → Payment API Cannot Retrieve Records → Checkout Freezes
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section alt" id="demo">
+        <div class="container text-center">
+            <h2 class="section-title">Test RootTrace AI</h2>
+            <p class="section-desc mx-auto">
+                Click the chat bubble at the bottom right and describe an incident. RootTrace will
+                generate an incident summary, likely root cause, causal chain, evidence table,
+                confidence level, and human verification step.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        RootTrace AI · Presented by DeepThink · Ames, Hanli, WeiJie, LiWen
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- n8n Chat Widget Initialization -->
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
         createChat({
             webhookUrl: 'https://n8ngc.codeblazar.org/webhook/06a099aa-3f20-4d1a-b851-aa139180ce4e/chat',
             mode: 'window',
-            chatInputPlaceholder: 'Type your message...',
-            title: 'Nextern Assistant',
-            subtitle: 'Live Production Webhook',
+            chatInputPlaceholder: 'Describe your incident...',
+            title: 'RootTrace Assistant',
+            subtitle: 'AI Root Cause Investigator',
             showWelcomeScreen: false,
             initialMessages: [
-                'Hello! The frontend is successfully communicating with the n8n backend. How can I help?'
+                'Hi! I am RootTrace AI. Tell me the incident you want to investigate.'
             ]
         });
     </script>
+
 </body>
 
 </html>
