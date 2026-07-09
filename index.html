@@ -8,11 +8,12 @@
     <title>RootTrace AI</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             background: #050720;
             color: white;
         }
@@ -25,6 +26,7 @@
                 linear-gradient(135deg, #070729 0%, #0b102e 45%, #36474b 100%);
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
 
         .orb {
@@ -43,24 +45,65 @@
             opacity: 0.75;
         }
 
-        .navbar {
-            background: transparent;
-            padding: 28px 0;
-        }
+.navbar {
+    background: rgba(5,7,32,0.82);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 
-        .nav-link {
-            color: rgba(255, 255, 255, 0.75);
-            margin-left: 20px;
-        }
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
 
-        .nav-link:hover {
-            color: white;
+    padding: 6px 0;
+    z-index:9999;
+}
+
+
+.logo-img {
+    width:55px;
+    height:auto;
+}
+
+
+.nav-link {
+    color:rgba(255,255,255,0.85);
+    margin-left:25px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+
+.nav-btn {
+    margin-left:25px;
+    background:#ffe600;
+    color:#111;
+    padding:8px 20px;
+    border-radius:999px;
+    font-weight:700;
+    text-decoration:none;
+    white-space:nowrap;
+}
+
+        .nav-btn:hover {
+            background: white;
+            color: #111;
         }
 
         .logo-img {
-            width: 100px;
+            width: 140px;
+            max-width: 100%;
             height: auto;
             filter: brightness(0) invert(1);
+            transition: transform .3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-inner {
+            min-height:70px;
         }
 
         .brand-text {
@@ -83,7 +126,7 @@
         }
 
         .main-title {
-            font-size: 4.5rem;
+            font-size: clamp(3rem, 7vw, 4.5rem);
             font-weight: 800;
             line-height: 1;
         }
@@ -135,6 +178,7 @@
         }
 
         .glass-card {
+            transition: all .35s ease;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 24px;
@@ -142,6 +186,31 @@
             height: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(12px);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(77,252,255,0.45);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .hero-content {
+            animation: fadeUp 1s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to {
+                opacity:1;
+                transform:translateY(0);
+            }
         }
 
         .map-box {
@@ -194,6 +263,27 @@
         }
 
         @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 15px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .nav-link {
+                margin-left:8px;
+                font-size:0.8rem;
+            }
+
+            .nav-btn {
+                margin-left:8px;
+                padding:7px 16px;
+            }
+
+            .logo-img {
+                width:120px;
+            }
+
             .main-title {
                 font-size: 3rem;
             }
@@ -204,25 +294,138 @@
                 right: -100px;
             }
         }
-    </style>
+    
+        /* Premium UI upgrades */
+        .section {
+            position: relative;
+        }
+
+        .section::before {
+            content:"";
+            position:absolute;
+            top:0;
+            left:50%;
+            width:80%;
+            height:1px;
+            background:rgba(255,255,255,.08);
+            transform:translateX(-50%);
+        }
+
+        .btn-main {
+            transition:.3s ease;
+            box-shadow:0 10px 30px rgba(255,230,0,.25);
+        }
+
+        .btn-main:hover {
+            transform:translateY(-3px);
+            box-shadow:0 15px 40px rgba(255,230,0,.45);
+        }
+
+        .scenario-tag {
+            letter-spacing:.5px;
+        }
+
+        @media(max-width:576px){
+            .hero {
+                padding-top:110px;
+            }
+
+            .hero-content {
+                text-align:center;
+                padding-left:15px;
+                padding-right:15px;
+            }
+
+            .subtitle {
+                font-size:1rem;
+            }
+
+            .section-title {
+                font-size:1.8rem;
+            }
+
+            .glass-card {
+                padding:22px;
+                border-radius:18px;
+            }
+
+            #bp-embedded-webchat {
+                height:500px !important;
+            }
+        }
+
+    
+        .workflow-line {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:20px;
+            font-weight:700;
+            color:#4dfcff;
+            font-size:1.1rem;
+        }
+
+        .workflow-line span {
+            padding:15px 25px;
+            border-radius:999px;
+            background:rgba(255,255,255,.08);
+            border:1px solid rgba(255,255,255,.15);
+        }
+
+        .glass-card h4 {
+            color:#4dfcff;
+            font-weight:800;
+        }
+
+        .glass-card h5 {
+            font-weight:800;
+            margin-top:10px;
+        }
+
+        .reveal {
+            animation: reveal .8s ease forwards;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity:0;
+                transform:translateY(40px);
+            }
+            to {
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @media(max-width:768px){
+            .workflow-line {
+                flex-direction:column;
+            }
+        }
+
+</style>
+    
 </head>
 
 <body>
 
     <div class="hero" id="home">
         <div class="orb"></div>
-
         <nav class="navbar navbar-expand-lg">
-            <div class="container">
+            <div class="container d-flex align-items-center justify-content-between navbar-inner">
+
                 <a class="navbar-brand" href="#">
                     <img src="RootTraceAI.png" class="logo-img" alt="RootTrace Logo">
                 </a>
 
-                <div>
-                    <a class="nav-link d-inline" href="#map">Dependency Map</a>
-                    <a class="nav-link d-inline" href="#scenarios">Scenarios</a>
-                    <a class="nav-link d-inline" href="#demo">Try AI</a>
+                <div class="d-flex align-items-center flex-nowrap">
+                    <a class="nav-link" href="#map">Dependency Map</a>
+                    <a class="nav-link" href="#scenarios">Scenarios</a>
+                    <a class="nav-link" href="#workflow">Workflow</a>
+                    <a class="nav-btn" href="#demo">Try RootTrace AI</a>
                 </div>
+
             </div>
         </nav>
 
@@ -238,7 +441,7 @@
                 trace checkout errors back to the most likely root cause.
             </p>
 
-            <a href="#demo" class="btn btn-main">Try RootTrace Assistant</a>
+            <a href="#demo" class="btn btn-main">Try RootTrace AI</a>
         </div>
     </div>
 
@@ -350,14 +553,78 @@
     </section>
 
 
-    <<section class="section alt" id="demo">
+    
+<section class="section" id="workflow">
+    <div class="container">
+        <h2 class="section-title">How RootTrace AI Works</h2>
+        <p class="section-desc mb-5">
+            RootTrace AI analyses incidents by connecting symptoms, system dependencies, and possible root causes.
+        </p>
+
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <div class="glass-card">
+                    <h4>01</h4>
+                    <h5>Detect</h5>
+                    <p class="text-white-50">Identify checkout errors and incident symptoms.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card">
+                    <h4>02</h4>
+                    <h5>Trace</h5>
+                    <p class="text-white-50">Follow system dependencies backwards.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card">
+                    <h4>03</h4>
+                    <h5>Analyse</h5>
+                    <p class="text-white-50">Compare incidents with possible failures.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="glass-card">
+                    <h4>04</h4>
+                    <h5>Resolve</h5>
+                    <p class="text-white-50">Provide the most likely root cause.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt" id="architecture">
+    <div class="container">
+        <h2 class="section-title">AI Investigation Architecture</h2>
+
+        <div class="glass-card text-center">
+            <div class="workflow-line">
+                <span>User Incident</span>
+                <b>→</b>
+                <span>RootTrace AI</span>
+                <b>→</b>
+                <span>Dependency Analysis</span>
+                <b>→</b>
+                <span>Root Cause</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt" id="demo">
         <div class="container text-center">
-            <h2 class="section-title">Test RootTrace AI</h2>
+            <h2 class="section-title">Chat with RootTrace AI</h2>
             <p class="section-desc mx-auto mb-4">
                 Interact with the integrated RootTrace companion directly below to begin your investigation.
             </p>
-            
-            <div id="bp-embedded-webchat" style="width: 100%; height: 600px; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);"></div>
+
+            <div id="bp-embedded-webchat"
+                style="width: 100%; height: 600px; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            </div>
         </div>
     </section>
 
@@ -370,5 +637,20 @@
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/07/09/04/20260709040934-7S30HSYT.js" defer></script>
 
+
+<script>
+const cards = document.querySelectorAll('.glass-card');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('reveal');
+        }
+    });
+},{threshold:0.15});
+
+cards.forEach(card => observer.observe(card));
+</script>
+
 </body>
+
 </html>
